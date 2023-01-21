@@ -5,10 +5,10 @@ import requests
 
 # Create your views here.
 
-BASE_URL = 'http://localhost:3000/api/'
+# BASE_URL = 'http://localhost:3000/api/'
 
 
-# BASE_URL = 'https://assignmentshelpbackend-pqbat.ondigitalocean.app/api/'
+BASE_URL = 'https://assignmentshelpbackend-pqbat.ondigitalocean.app/api/'
 
 
 class HomeView(View):
