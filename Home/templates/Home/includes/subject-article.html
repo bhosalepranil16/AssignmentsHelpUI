@@ -1,0 +1,19 @@
+<article class="row text-center border-bottom p-2 m-2">
+              <div class="col-12">
+                <h3 class="h5">
+                  <a class="post-title" href="subject/{{ subject.slug }}/"
+                    >{{ subject.name }}</a
+                  >
+                </h3>
+                  <ul class="list-inline post-meta mb-2">
+                      <li class="list-inline-item">{{ subject.short_name }}</li>
+                      <li class="list-inline-item">Year: {{ subject.year }}</li>
+                      <li class="list-inline-item">Semester: {{ subject.semester }}</li>
+                </ul>
+                <p>
+                </p>
+                  <a href="subject/{{ subject.slug }}/" class="btn btn-outline-primary"
+                  >Continue...</a
+                >
+              </div>
+            </article>

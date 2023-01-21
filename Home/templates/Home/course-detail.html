@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Assignments Help
+{% endblock %}
+
+{% block content %}
+    <h2 class="text-center my-2">{{ course.name }}</h2>
+	<div class="container">
+
+		<div class="row">
+			<div class="col-12 mt-3 mb-lg-0">
+                    <h3 class="text-center">Subjects</h3>
+                {% for subject in subjects %}
+                    {% include 'Home/includes/subject-article.html' %}
+                {% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

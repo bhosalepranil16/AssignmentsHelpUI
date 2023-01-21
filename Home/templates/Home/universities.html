@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Assignments Help
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-center my-2">Universities</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 mt-3 mb-lg-0">
+                {% for university in universities %}
+                    {% include 'Home/includes/university-article.html' %}
+                {% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

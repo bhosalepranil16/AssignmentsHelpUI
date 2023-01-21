@@ -1,0 +1,14 @@
+<article class="row text-center border-bottom p-2 m-2">
+              <div class="col-12">
+                <h3 class="h5">
+                  <a class="post-title" href="{% url 'course_detail_view' university.slug course.slug %}"
+                    >{{ course.name }}</a
+                  >
+                </h3>
+                <p>
+                </p>
+                   <a href="{% url 'course_detail_view' university.slug course.slug %}" class="btn btn-outline-primary"
+                  >Continue...</a
+                >
+              </div>
+            </article>
