@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from django.views import View
 
-import requests
+from University.models import UniversityModel
+from Course.models import CourseModel, UniversityCourseModel
+from College.models import CollegeModel
+from Subject.models import SubjectModel
+from Assignment.models import AssignmentModel
+from ContactUs.models import ContactUsModel
+
 
 # Create your views here.
-
-# BASE_URL = 'http://localhost:3000/api/'
-
-
-BASE_URL = 'https://assignmentshelpbackend-pqbat.ondigitalocean.app/api/'
 
 
 class HomeView(View):
@@ -18,53 +19,100 @@ class HomeView(View):
 
 class UniversityView(View):
     def get(self, request):
-        response = requests.get(f'{BASE_URL}university/')
-        response_data = response.json()
-        return render(request, 'Home/universities.html', {
-            'universities': response_data['data']['universities']
-        })
+        try:
+            universities = UniversityModel.objects.all()
+            return render(request, 'Home/universities.html', {
+                'universities': universities
+            })
+        except Exception:
+            return render(request, 'Home/universities.html', {
+                'universities': []
+            })
 
 
 class UniversityDetailView(View):
     def get(self, request, university_slug):
-        response = requests.get(f'{BASE_URL}university/{university_slug}')
-        response_data = response.json()
-        return render(request, 'Home/university-detail.html', {
-            'university': response_data['data']['university'],
-            'courses': response_data['data']['courses']
-        })
+        try:
+            university_course = UniversityCourseModel.objects.filter(university__slug=university_slug)
+            colleges = CollegeModel.objects.filter(university__slug=university_slug)
+            courses = []
+            university = {}
+            for a in university_course:
+                b = {
+                    'name': a.course.name,
+                    'slug': a.course.slug
+                }
+                university = {
+                    'name': a.university.name,
+                    'slug': a.university.slug,
+                    'short_name': a.university.short_name
+                }
+                courses.append(b)
+            return render(request, 'Home/university-detail.html', {
+                'university': university,
+                'courses': courses,
+                'colleges': colleges
+            })
+        except Exception:
+            return render(request, 'Home/university-detail.html', {
+                'university': {},
+                'courses': [],
+                'colleges': []
+            })
 
 
 class CourseDetailView(View):
     def get(self, request, university_slug, course_slug):
-        response = requests.get(f'{BASE_URL}course/{course_slug}')
-        response_data = response.json()
-        return render(request, 'Home/course-detail.html', {
-            'course': response_data['data']['course'],
-            'subjects': response_data['data']['subjects']
-        })
+        try:
+            course = CourseModel.objects.get(slug=course_slug)
+            subjects = SubjectModel.objects.filter(course__slug=course_slug).order_by('semester')
+            return render(request, 'Home/course-detail.html', {
+                'course': course,
+                'subjects': subjects
+            })
+        except Exception:
+            return render(request, 'Home/course-detail.html', {
+                'course': {},
+                'subjects': []
+            })
 
 
 class SubjectDetailView(View):
     def get(self, request, university_slug, course_slug, subject_slug):
-        response = requests.get(f'{BASE_URL}subject/{subject_slug}')
-        response_data = response.json()
-        return render(request, 'Home/subject-detail.html', {
-            'subject': response_data['data']['subject'],
-            'assignments': response_data['data']['assignments'],
-            'course': response_data['data']['course']
-        })
+        try:
+            subject = SubjectModel.objects.get(slug=subject_slug)
+            assignments = AssignmentModel.objects.filter(subject__slug=subject_slug)
+            course = subject.course
+            return render(request, 'Home/subject-detail.html', {
+                'subject': subject,
+                'assignments': assignments,
+                'course': course
+            })
+        except Exception:
+            return render(request, 'Home/subject-detail.html', {
+                'subject': {},
+                'assignments': [],
+                'course': {}
+            })
 
 
 class AssignmentDetailView(View):
     def get(self, request, university_slug, course_slug, subject_slug, assignment_slug):
-        response = requests.get(f'{BASE_URL}assignment/{assignment_slug}')
-        response_data = response.json()
-        return render(request, 'Home/assignment-detail.html', {
-            'assignment': response_data['data']['assignment'],
-            'subject': response_data['data']['subject'],
-            'course': response_data['data']['course'],
-        })
+        try:
+            assignment = AssignmentModel.objects.get(slug=assignment_slug)
+            subject = assignment.subject
+            course = assignment.subject.course
+            return render(request, 'Home/assignment-detail.html', {
+                'assignment': assignment,
+                'subject': subject,
+                'course': course,
+            })
+        except Exception:
+            return render(request, 'Home/assignment-detail.html', {
+                'assignment': {},
+                'subject': {},
+                'course': {},
+            })
 
 
 class AboutUsView(View):
@@ -77,13 +125,13 @@ class ContactUsView(View):
         return render(request, 'Home/contact-us.html')
 
     def post(self, request):
-        response = requests.post(f'{BASE_URL}contact-us/', {
-            'name': request.POST['name'],
-            'email': request.POST['email'],
-            'message': request.POST['message']
-        })
-        print(response.status_code)
-        return render(request, 'Home/contact-us.html')
+        try:
+            contact_us = ContactUsModel(name=request.POST['name'], email=request.POST['email'],
+                                        message=request.POST['message'])
+            contact_us.save()
+            return render(request, 'Home/contact-us.html')
+        except Exception:
+            return render(request, 'Home/contact-us.html')
 
 
 class PrivacyPolicyView(View):
