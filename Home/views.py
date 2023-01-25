@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from django.views import View
+from django.http import HttpResponseRedirect
 
 from University.models import UniversityModel
 from Course.models import CourseModel, UniversityCourseModel
@@ -7,6 +8,7 @@ from College.models import CollegeModel
 from Subject.models import SubjectModel
 from Assignment.models import AssignmentModel
 from ContactUs.models import ContactUsModel
+from ContactUs.forms import ContactUsForm
 
 
 # Create your views here.
@@ -122,20 +124,30 @@ class AboutUsView(View):
 
 class ContactUsView(View):
     def get(self, request):
-        return render(request, 'Home/contact-us.html')
+        contact_us_form = ContactUsForm()
+        return render(request, 'Home/contact-us.html', {
+            'contact_us_form': contact_us_form
+        })
 
     def post(self, request):
         try:
-            contact_us = ContactUsModel(name=request.POST['name'], email=request.POST['email'],
-                                        message=request.POST['message'])
-            contact_us.save()
-            return render(request, 'Home/contact-us.html')
+            contact_us_form = ContactUsForm(data=request.POST)
+            if contact_us_form.is_valid():
+                contact_us_form.save()
+                return HttpResponseRedirect(reverse('home_view'))
+            else:
+                return render(request, 'Home/contact-us.html', {
+                    'contact_us_form': contact_us_form
+                })
         except Exception:
-            return render(request, 'Home/contact-us.html')
+            return render(request, 'Home/contact-us.html', {
+                'contact_us_form': contact_us_form
+            })
 
 
 class PrivacyPolicyView(View):
     def get(self, request):
+
         return render(request, 'Home/privacy-policy.html')
 
 
