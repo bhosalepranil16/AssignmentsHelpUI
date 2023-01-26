@@ -8,11 +8,12 @@
     <h1 class="text-center my-2">Universities</h1>
 	<div class="container">
 		<div class="row">
-			<div class="col-12 mt-3 mb-lg-0">
+			<div class="col-lg-8 mt-3 mb-lg-0">
                 {% for university in universities %}
                     {% include 'Home/includes/university-article.html' %}
                 {% endfor %}
 			</div>
+            <aside class="col-lg-4"></aside>
 		</div>
 	</div>
 {% endblock %}
