@@ -11,13 +11,13 @@
             <div class="col-lg-8">
                 <article class="row my-4">
                     <div class="col-lg-10 mx-auto mb-4">
-                        <h1 class="h2">{{ assignment.name }}</h1>
-                        <ul class="list-inline post-meta mb-1">
+                        <h1 class="h2 text-center">{{ assignment.name }}</h1>
+                        <ul class="list-inline post-meta mb-1 text-center">
                             <li class="list-inline-item">
-                                Subject: <a href="">{{ subject.name }}</a>
+                                Subject: <a href="{% url 'subject_detail_view' subject.slug %}">{{ subject.name }}</a>
                             </li>
                             <li class="list-inline-item">
-                                Course: <a href="">{{ course.name }}</a>
+                                Course: <a href="{% url 'course_detail_view' course.slug %}">{{ course.name }}</a>
                             </li>
                         </ul>
                     </div>
