@@ -5,12 +5,14 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="text-center my-2">Universities</h1>
+    <h2 class="text-center my-2">{{ university.name }}</h2>
+    <h3 class="text-center">Courses</h3>
 	<div class="container">
+
 		<div class="row">
 			<div class="col-lg-8 mt-3 mb-lg-0">
-                {% for university in universities %}
-                    {% include 'Home/includes/university-article.html' %}
+                {% for course in courses %}
+                    {% include 'University/includes/course-article.html' %}
                 {% endfor %}
 			</div>
             <aside class="col-lg-4"></aside>

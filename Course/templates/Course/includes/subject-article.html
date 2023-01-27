@@ -1,7 +1,7 @@
 <article class="row border-bottom p-2 m-2">
               <div class="col-12">
                 <h3 class="h5">
-                  <a class="post-title" href="subject/{{ subject.slug }}/"
+                  <a class="post-title" href="{% url 'subject_detail_view' subject.slug %}"
                     >{{ subject.name }}</a
                   >
                 </h3>
@@ -12,7 +12,7 @@
                 </ul>
                 <p>
                 </p>
-                  <a href="subject/{{ subject.slug }}/" class="btn btn-outline-primary"
+                  <a href="{% url 'subject_detail_view' subject.slug %}" class="btn btn-outline-primary"
                   >Continue...</a
                 >
               </div>
