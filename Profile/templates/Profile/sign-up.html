@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Assignments Help
+{% endblock %}
+
+{% block content %}
+
+	<div class="container mt-3">
+		<div class="row">
+			<div class="col-md-6 pb-2">
+                <h2 class="text-center">Sign Up</h2>
+                {% if show_errors %}
+                    <div class="alert alert-danger" role="alert">
+                            {{ errors }}
+                    </div>
+                {% endif %}
+				<form method="POST" action="{% url 'sign_up_view' %}">
+                    {% csrf_token %}
+					<div class="form-group">
+						<label for="email">{{ sign_up_form.email.label_tag }}</label>
+						<input type="email" name="email" id="email" class="form-control" required>
+					</div>
+                    <div class="form-group">
+						<label for="password_first">{{ sign_up_form.password_first.label_tag }}</label>
+						<input type="password" name="password_first" id="password_first" class="form-control" required>
+					</div>
+                    <div class="form-group">
+						<label for="password_second">{{ sign_up_form.password_second.label_tag }}</label>
+						<input type="password" name="password_second" id="password_second" class="form-control" required>
+					</div>
+					<button type="submit" class="btn btn-primary">Sign Up</button>
+				</form>
+                <div class="p-4 text-center">
+					<h4>Already have Account? Login Here</h4>
+                    <a href="{% url 'login_view' %}" class="btn btn-outline-primary">Login</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Assignments Help
+{% endblock %}
+
+{% block content %}
+
+	<div class="container mt-3">
+		<div class="row">
+			<div class="col-md-6 pb-2">
+                <h2 class="text-center">Login</h2>
+                {% if show_errors %}
+                    <div class="alert alert-danger" role="alert">
+                            {{ errors }}
+                    </div>
+                {% endif %}
+				<form method="POST" action="{% url 'login_view' %}">
+                    {% csrf_token %}
+					<div class="form-group">
+						<label for="email">{{ login_form.email.label_tag }}</label>
+						<input type="email" name="email" id="email" class="form-control" required>
+					</div>
+                    <div class="form-group">
+						<label for="password">{{ login_form.password.label_tag }}</label>
+						<input type="password" name="password" id="password" class="form-control" required>
+					</div>
+					<button type="submit" class="btn btn-primary">Login</button>
+				</form>
+				<div class="p-4 text-center">
+					<h4>New to Assignments Help? Sign Up Here</h4>
+                    <a href="{% url 'sign_up_view' %}" class="btn btn-outline-primary">Sign Up</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

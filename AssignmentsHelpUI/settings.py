@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'College.apps.CollegeConfig',
     'Subject.apps.SubjectConfig',
     'Assignment.apps.AssignmentConfig',
-    'ContactUs.apps.ContactusConfig'
+    'ContactUs.apps.ContactusConfig',
+    'Profile.apps.ProfileConfig'
 ]
 
 MIDDLEWARE = [
@@ -143,3 +144,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGIN_REDIRECT_URL = '/'

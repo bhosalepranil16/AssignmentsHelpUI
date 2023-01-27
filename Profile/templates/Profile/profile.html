@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Assignments Help
+{% endblock %}
+
+{% block content %}
+    <section class="section-sm border-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="title-bordered mb-5 d-flex align-items-center">
+                        <h1 class="h4">{{ request.user.username }}</h1>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4 mb-md-0 text-center text-md-left">
+                    <img loading="lazy" class="rounded-lg img-fluid" src="/static/images/author.jpg">
+                </div>
+                <div class="col-lg-9 col-md-8 content text-center text-md-left">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet vulputate augue. Duis auctor lacus id vehicula gravida. Nam suscipit vitae purus et laoreet. Donec nisi dolor, consequat vel pretium id, auctor in dui. Nam iaculis, neque ac ullamcorper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet vulputate augue. Duis auctor lacus id vehicula gravida. Nam suscipit vitae purus et laoreet.</p>
+                    <p>Donec nisi dolor, consequat vel pretium id, auctor in dui. Nam iaculis, neque ac ullamcorper.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet vulputate augue.</p>
+                </div>
+                <a href="{% url 'logout_view' %}" class="mt-3 mx-auto btn btn-outline-primary">Logout</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
