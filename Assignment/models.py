@@ -24,3 +24,12 @@ class AssignmentModel(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class AssignmentImageModel(models.Model):
+    assignment = models.ForeignKey(AssignmentModel, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='outputs/')
+
+    class Meta:
+        verbose_name = 'Assignment Image'
+        verbose_name_plural = 'Assignment Images'
