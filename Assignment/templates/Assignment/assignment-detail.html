@@ -14,6 +14,9 @@
                         <h1 class="h2 text-center">{{ assignment.name }}</h1>
                         <ul class="list-inline post-meta mb-1 text-center">
                             <li class="list-inline-item">
+                                Author: {{ assignment.author.username }}
+                            </li>
+                            <li class="list-inline-item">
                                 Subject: <a href="{% url 'subject_detail_view' subject.slug %}">{{ subject.name }}</a>
                             </li>
                             <li class="list-inline-item">

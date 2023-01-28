@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, reverse
 from django.views import View
 
 from .forms import SignUpForm, LoginForm
+from Assignment.models import AssignmentModel
 
 
 # Create your views here.
@@ -106,6 +107,13 @@ class ProfileView(View):
         try:
             if not request.user.is_authenticated:
                 return redirect(reverse('login_view'))
-            return render(request, 'Profile/profile.html')
+            else:
+                user = request.user
+                assignments = AssignmentModel.objects.filter(author_id=user.id)
+                return render(request, 'Profile/profile.html', {
+                    'assignments': assignments
+                })
         except Exception:
-            return render(request, 'Profile/profile.html')
+            return render(request, 'Profile/profile.html', {
+                'assignments': []
+            })

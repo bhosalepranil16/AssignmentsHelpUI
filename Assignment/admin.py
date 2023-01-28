@@ -7,8 +7,8 @@ from .models import AssignmentModel
 
 
 class AssignmentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'assignment_no', 'subject')
-    list_filter = ('subject',)
+    list_display = ('name', 'assignment_no', 'subject', 'author')
+    list_filter = ('subject', 'author')
     prepopulated_fields = {'slug': ('name',)}
 
 

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
@@ -15,6 +16,7 @@ class AssignmentModel(models.Model):
     codes = models.CharField(max_length=200)
     outputs = ArrayField(models.CharField(max_length=200))
     subject = models.ForeignKey(SubjectModel, related_name='assignments', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='assignments', null=True)
 
     class Meta:
         verbose_name = 'Assignment'
