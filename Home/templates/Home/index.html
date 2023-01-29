@@ -11,8 +11,8 @@
 			<div class="col-lg-8  mb-5 mb-lg-0">
                 <h3 class="p-1 text-primary">Tired of searching SPPU Coding Assignments Solution on Google?</h3>
                 <h3 class="p-1">We can help you...</h3>
-                <h3 class="p-1">Now we have all codes of First Year Engineering's "Programming and Problem Solving" You can refer here...</h3>
-                <a href="{% url 'subject_detail_view' 'programming-and-problem-solving' %}" class="btn btn-outline-primary">Let's See...</a>
+                <h3 class="p-1">Now we have all codes of First Year Engineering - SPPU's "Programming and Problem Solving Laboratory" You can refer here...</h3>
+                <a href="{% url 'subject_detail_view' 'programming-and-problem-solving-laboratory' %}" class="btn btn-outline-primary">Let's See...</a>
                 <h3 class="p-1 mt-5">We going to cover all the subjects of Undergraduate Course not just SPPU across all Universities and Autonomous Colleges</h3>
 			    <h3 class="p-1">Come on Second Year Students, for which subject you want "Assignments Help"?</h3>
                 <a href="{% url 'contact_us_view' %}" class="btn btn-outline-primary">Message Me Here...</a>
@@ -22,22 +22,21 @@
    <div class="widget">
       <h5 class="widget-title"><span>Universities</span></h5>
       <ul class="list-unstyled widget-list">
-          <li><a href="{% url 'university_detail_view' 'savitribai-phule-pune-university' %}" class="d-flex">Savitribai Phule Pune University</a>
-         </li>
+          {% for university in universities %}
+              <li>
+                  <a href="{% url 'university_detail_view' university.slug  %}" class="d-flex">
+                    {{ university.name }}
+                  </a>
+              </li>
+          {% endfor %}
       </ul>
    </div>
                 <div class="widget">
       <h5 class="widget-title"><span>Courses</span></h5>
       <ul class="list-unstyled widget-list">
-          <li><a href="{% url 'course_detail_view' 'first-year-engineering' %}" class="d-flex">First Year of Engineering of SPPU</a>
-         </li>
-      </ul>
-   </div>
-                   <div class="widget">
-      <h5 class="widget-title"><span>Subjects</span></h5>
-      <ul class="list-unstyled widget-list">
-          <li><a href="{% url 'subject_detail_view' 'programming-and-problem-solving' %}" class="d-flex">Programming and Problem Solving</a>
-         </li>
+          {% for course in courses %}
+              <li><a href="{% url 'course_detail_view' course.slug %}" class="d-flex">{{ course.name }}</a></li>
+          {% endfor %}
       </ul>
    </div>
 			</aside>

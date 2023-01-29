@@ -1,13 +1,21 @@
 from django.shortcuts import render
 from django.views import View
 
+from University.models import UniversityModel
+from Course.models import CourseModel
+
 
 # Create your views here.
 
 
 class HomeView(View):
     def get(self, request):
-        return render(request, 'Home/index.html')
+        universities = UniversityModel.objects.all()
+        courses = CourseModel.objects.all()
+        return render(request, 'Home/index.html', {
+            'universities': universities,
+            'courses': courses
+        })
 
 
 class AboutUsView(View):

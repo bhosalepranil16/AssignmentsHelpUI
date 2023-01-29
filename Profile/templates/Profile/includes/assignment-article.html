@@ -1,15 +1,15 @@
-<div class="col-lg-4 col-sm-6 mb-4">
+<div class="col-sm-6 mb-4">
     <article class="mb-5">
-        <h3 class="h5"><a class="post-title" href="post-details-2.html">{{ assignment.name }}</a></h3>
+        <h3 class="h5"><a class="post-title" href="{% url 'assignment_detail_view' assignment.slug %}">{{ assignment.name }}</a></h3>
         <ul class="list-inline post-meta mb-2">
             <li class="list-inline-item">Subject : <a href="{% url 'subject_detail_view' assignment.subject.slug %}">
                 {{ assignment.subject.name }}</a>
             </li>
-{#            <li class="list-inline-item"><i class="ti-user mr-2"></i><a href="author.html">John Doe</a></li>#}
-{#            <li class="list-inline-item">Categories :	<a href="#!" class="ml-1">Newyork city </a></li>#}
-{#            <li class="list-inline-item">Tags : <a href="#!" class="ml-1">City </a> ,<a href="#!" class="ml-1">Photo </a></li>#}
+            <li class="list-inline-item">Course : <a href="{% url 'course_detail_view' assignment.subject.course.slug %}">
+                {{ assignment.subject.course }}</a>
+            </li>
         </ul>
         <p>{{ assignment.question }}</p>
-        <a href="post-details-2.html" class="btn btn-outline-primary">Let's See</a>
+        <a href="{% url 'assignment_detail_view' assignment.slug %}" class="btn btn-outline-primary">Let's See</a>
     </article>
 </div>
