@@ -10,7 +10,7 @@ class SubjectDetailView(View):
     def get(self, request, subject_slug):
         try:
             subject = SubjectModel.objects.get(slug=subject_slug)
-            assignments = AssignmentModel.objects.filter(subject__slug=subject_slug)
+            assignments = subject.assignmentmodel_set.all()
             course = subject.course
             return render(request, 'Subject/subject-detail.html', {
                 'subject': subject,

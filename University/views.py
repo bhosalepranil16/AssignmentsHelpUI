@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 
 from .models import UniversityModel
-from Course.models import UniversityCourseModel
+from Course.models import CourseModel
 from College.models import CollegeModel
 
 
@@ -26,31 +26,16 @@ class UniversityView(View):
 class UniversityDetailView(View):
     def get(self, request, university_slug):
         try:
-            university_course = UniversityCourseModel.objects.filter(university__slug=university_slug)
-            colleges = CollegeModel.objects.filter(university__slug=university_slug)
-            courses = []
-            university = {}
-            for a in university_course:
-                b = {
-                    'name': a.course.name,
-                    'slug': a.course.slug
-                }
-                university = {
-                    'name': a.university.name,
-                    'slug': a.university.slug,
-                    'short_name': a.university.short_name
-                }
-                courses.append(b)
+            university = UniversityModel.objects.get(slug=university_slug)
+            courses = CourseModel.objects.filter(university=university)
             return render(request, 'University/university-detail.html', {
                 'university': university,
-                'courses': courses,
-                'colleges': colleges
+                'courses': courses
             })
         except Exception as err:
             return render(request, 'University/university-detail.html', {
                 'university': {},
                 'courses': [],
-                'colleges': [],
                 'show_errors': True,
                 'errors': str(err)
             })

@@ -13,7 +13,8 @@ class SubjectModel(models.Model):
     short_name = models.CharField(max_length=10)
     year = models.IntegerField()
     semester = models.IntegerField()
-    course = models.ForeignKey(CourseModel, related_name='subjects', on_delete=models.CASCADE)
+    description = models.TextField(blank=True)
+    course = models.ForeignKey(CourseModel, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Subject'

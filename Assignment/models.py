@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
 
 from Subject.models import SubjectModel
 
@@ -14,9 +13,9 @@ class AssignmentModel(models.Model):
     assignment_no = models.IntegerField()
     question = models.TextField()
     codes = models.CharField(max_length=200)
-    outputs = ArrayField(models.CharField(max_length=200))
-    subject = models.ForeignKey(SubjectModel, related_name='assignments', on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='assignments', null=True)
+    description = models.TextField(blank=True)
+    subject = models.ForeignKey(SubjectModel, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     class Meta:
         verbose_name = 'Assignment'

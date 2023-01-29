@@ -9,6 +9,8 @@ from University.models import UniversityModel
 class CourseModel(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
+    university = models.ForeignKey(UniversityModel, on_delete=models.SET_NULL, null=True)
+    description = models.TextField(blank=True)
 
     class Meta:
         verbose_name = 'Course'
@@ -18,20 +20,3 @@ class CourseModel(models.Model):
         return self.name
 
 
-class CollegeCourseModel(models.Model):
-    college = models.ForeignKey(CollegeModel, on_delete=models.CASCADE)
-    course = models.ForeignKey(CourseModel, on_delete=models.CASCADE)
-    total_intake = models.IntegerField()
-
-    class Meta:
-        verbose_name = 'CollegeCourse'
-        verbose_name_plural = 'CollegeCourses'
-
-
-class UniversityCourseModel(models.Model):
-    university = models.ForeignKey(UniversityModel, on_delete=models.CASCADE)
-    course = models.ForeignKey(CourseModel, on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name = 'UniversityCourse'
-        verbose_name_plural = 'UniversityCourses'

@@ -9,7 +9,8 @@ class CollegeModel(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
     short_name = models.CharField(max_length=10)
-    university = models.ForeignKey(UniversityModel, related_name='colleges', on_delete=models.CASCADE)
+    description = models.TextField(blank=True)
+    university = models.ForeignKey(UniversityModel, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'College'
