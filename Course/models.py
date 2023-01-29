@@ -20,3 +20,11 @@ class CourseModel(models.Model):
         return self.name
 
 
+class CourseSyllabusModel(models.Model):
+    name = models.CharField(max_length=100)
+    course = models.ForeignKey(CourseModel, on_delete=models.CASCADE)
+    syllabus = models.FileField(upload_to='syllabus/')
+
+    class Meta:
+        verbose_name = 'Course Syllabus'
+        verbose_name_plural = 'Course Syllabus'

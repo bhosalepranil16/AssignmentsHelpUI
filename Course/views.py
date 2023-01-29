@@ -11,14 +11,17 @@ class CourseDetailView(View):
         try:
             course = CourseModel.objects.get(slug=course_slug)
             subjects = course.subjectmodel_set.all().order_by('semester')
+            syllabuses = course.coursesyllabusmodel_set.all()
             return render(request, 'Course/course-detail.html', {
                 'course': course,
-                'subjects': subjects
+                'subjects': subjects,
+                'syllabuses': syllabuses
             })
         except Exception as err:
             return render(request, 'Course/course-detail.html', {
                 'course': {},
                 'subjects': [],
                 'show_errors': True,
+                'syllabuses': [],
                 'errors': str(err)
             })
