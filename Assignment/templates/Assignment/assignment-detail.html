@@ -38,6 +38,29 @@
                             </div>
                         {% endif %}
                         <p>{{ assignment.description }}</p>
+                        <div>
+                            <h3 class="text-center">Comment</h3>
+                            <form method="POST" action="{% url 'assignment_comment_view' assignment.slug %}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <textarea name="text" id="text" class="form-control" placeholder="Whar are your thoughts?" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Comment</button>
+                            </form>
+                            <div>
+                                <ul class="list-unstyled widget-list">
+                                    {% for comment in comments %}
+                                         <li class="media widget-post align-items-center">
+                                            <div class="media-body">
+                                                <strong>{{ comment.author }}</strong>
+                                                <div>{{ comment.text }}</div>
+                                               <small>{{ comment.created_at|date:"M d, Y" }}</small>
+                                            </div>
+                                         </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
                 </article>

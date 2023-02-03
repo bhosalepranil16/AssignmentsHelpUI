@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import AssignmentModel, AssignmentImageModel
+from .models import AssignmentModel, AssignmentImageModel, AssignmentCommentModel
 
 
 # Register your models here.
@@ -17,5 +17,11 @@ class AssignmentImagAdmin(admin.ModelAdmin):
     list_filter = ('assignment',)
 
 
+class AssignmentCommentAdmin(admin.ModelAdmin):
+    list_display = ('assignment', 'author')
+    list_filter = ('assignment', 'author')
+
+
 admin.site.register(AssignmentModel, AssignmentAdmin)
 admin.site.register(AssignmentImageModel, AssignmentImagAdmin)
+admin.site.register(AssignmentCommentModel, AssignmentCommentAdmin)

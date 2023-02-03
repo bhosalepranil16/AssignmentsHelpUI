@@ -32,3 +32,14 @@ class AssignmentImageModel(models.Model):
     class Meta:
         verbose_name = 'Assignment Image'
         verbose_name_plural = 'Assignment Images'
+
+
+class AssignmentCommentModel(models.Model):
+    text = models.TextField()
+    assignment = models.ForeignKey(AssignmentModel, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Assignment Comment'
+        verbose_name_plural = 'Assignment Comments'
