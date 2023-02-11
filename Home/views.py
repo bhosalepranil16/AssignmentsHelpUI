@@ -31,3 +31,8 @@ class PrivacyPolicyView(View):
 class TermsAndConditionView(View):
     def get(self, request):
         return render(request, 'Home/terms-and-condition.html')
+
+
+class GoogleSearchConsoleView(View):
+    def get(self, request):
+        return render(request, 'Home/google2f18d2468a4ed341.html')
