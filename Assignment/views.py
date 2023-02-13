@@ -10,12 +10,10 @@ class AssignmentDetailView(View):
         try:
             assignment = AssignmentModel.objects.get(slug=assignment_slug)
             subject = assignment.subject
-            output_screenshots = assignment.assignmentimagemodel_set.all()
             comments = assignment.assignmentcommentmodel_set.all().order_by('-created_at')
             return render(request, 'Assignment/assignment-detail.html', {
                 'assignment': assignment,
                 'subject': subject,
-                'output_screenshots': output_screenshots,
                 'comments': comments
             })
         except Exception as err:
@@ -23,7 +21,6 @@ class AssignmentDetailView(View):
             return render(request, 'Assignment/assignment-detail.html', {
                 'assignment': {},
                 'subject': {},
-                'output_screenshots': [],
                 'comments': [],
                 'show_errors': True,
                 'errors': str(err)

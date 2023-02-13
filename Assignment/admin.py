@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import AssignmentModel, AssignmentImageModel, AssignmentCommentModel
+from .models import AssignmentModel, AssignmentCommentModel
 
 
 # Register your models here.
@@ -23,5 +23,4 @@ class AssignmentCommentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(AssignmentModel, AssignmentAdmin)
-admin.site.register(AssignmentImageModel, AssignmentImagAdmin)
 admin.site.register(AssignmentCommentModel, AssignmentCommentAdmin)

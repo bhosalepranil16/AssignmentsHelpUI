@@ -20,18 +20,18 @@
                 {% endfor %}
 			</div>
             <aside class="col-lg-4">
-                {% if syllabuses|length > 0 %}
-                    <h5 class="widget-title mt-4"><span>Syllabus</span></h5>
-                    <ul class="list-unstyled widget-list">
-                        {% for syllabus in syllabuses %}
-                            <li>
-                                <a href="{{ syllabus.syllabus.url }}" target="_blank" class="d-flex">
-                                {{ syllabus.name }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+{#                {% if syllabuses|length > 0 %}#}
+{#                    <h5 class="widget-title mt-4"><span>Syllabus</span></h5>#}
+{#                    <ul class="list-unstyled widget-list">#}
+{#                        {% for syllabus in syllabuses %}#}
+{#                            <li>#}
+{#                                <a href="{{ syllabus.syllabus.url }}" target="_blank" class="d-flex">#}
+{#                                {{ syllabus.name }}#}
+{#                                </a>#}
+{#                            </li>#}
+{#                        {% endfor %}#}
+{#                    </ul>#}
+{#                {% endif %}#}
             </aside>
 		</div>
 	</div>

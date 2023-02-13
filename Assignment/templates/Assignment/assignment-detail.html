@@ -26,14 +26,14 @@
                             <p>{{ assignment.question }}</p>
                         </div>
                         <script src="{{ assignment.codes }}"></script>
-                        {% if output_screenshots|length > 0 %}
-                            <h2 class="text-center my-2">Output Screenshots: </h2>
-                            <div class="post-slider">
-                                {% for output in output_screenshots %}
-                                    <img src="{{ output.image.url }}" class="img-fluid" alt="{{ output.assignment.name }}">
-                                {% endfor %}
-                            </div>
-                        {% endif %}
+{#                        {% if output_screenshots|length > 0 %}#}
+{#                            <h2 class="text-center my-2">Output Screenshots: </h2>#}
+{#                            <div class="post-slider">#}
+{#                                {% for output in output_screenshots %}#}
+{#                                    <img src="{{ output.image.url }}" class="img-fluid" alt="{{ output.assignment.name }}">#}
+{#                                {% endfor %}#}
+{#                            </div>#}
+{#                        {% endif %}#}
                         <p>{{ assignment.description }}</p>
                         <div>
                             <h3 class="text-center">Comment</h3>
