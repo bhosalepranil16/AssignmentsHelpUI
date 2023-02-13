@@ -5,15 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <h2 class="text-center my-2">{{ subject.name }}</h2>
-    <ul class="list-inline post-meta mb-1 text-center">
-        <li class="list-inline-item">
-            Course: <a href="{% url 'course_detail_view' course.slug %}">{{ course.name }}</a>
-        </li>
-        <li class="list-inline-item">
-            University: <a href="{% url 'university_detail_view' course.university.slug %}">{{ course.university }}</a>
-        </li>
-    </ul>
+    <h2 class="text-center my-2">{{ subject.name }} - {{ subject.subject_code }}</h2>
     <h3 class="text-center">Assignments</h3>
 	<div class="container">
 		<div class="row">

@@ -11,10 +11,7 @@ class SubjectModel(models.Model):
     slug = models.SlugField(max_length=100, unique=True)
     subject_code = models.CharField(max_length=10, unique=True)
     short_name = models.CharField(max_length=10)
-    year = models.IntegerField()
-    semester = models.IntegerField()
     description = models.TextField(blank=True)
-    course = models.ForeignKey(CourseModel, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Subject'
@@ -22,3 +19,14 @@ class SubjectModel(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class CourseSubjectModel(models.Model):
+    course = models.ForeignKey(CourseModel, on_delete=models.SET_NULL, null=True)
+    subject = models.ForeignKey(SubjectModel, on_delete=models.SET_NULL, null=True)
+    year = models.IntegerField()
+    semester = models.IntegerField()
+
+    class Meta:
+        verbose_name = 'Course Subject'
+        verbose_name_plural = 'Course Subject'
