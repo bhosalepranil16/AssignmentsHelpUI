@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Assignments Help
+    {{ assignment.question }} | Assignments Help
 {% endblock %}
 
 {% block content %}
@@ -10,20 +10,20 @@
         <div class="row">
             <div class="col-lg-8">
                 <article class="row my-4">
-                    <div class="col-lg-10 mx-auto mb-4">
-                        <h1 class="h2 text-center">{{ assignment.name }}</h1>
-                        <ul class="list-inline post-meta mb-1 text-center">
-                            <li class="list-inline-item">
-                                Author: {{ assignment.author.username }}
-                            </li>
-                            <li class="list-inline-item">
-                                Subject: <a href="{% url 'subject_detail_view' subject.slug %}">{{ subject.name }}</a>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="col-lg-10 mx-auto">
                         <div class="content">
-                            <p>{{ assignment.question }}</p>
+                            <h1 class="h4">{{ assignment.question }}</h1>
+                            <ul class="post-meta mb-1 mt-4">
+                                <li>
+                                    Assignment No: {{ assignment.assignment_no }}
+                                </li>
+                                <li>
+                                    Subject: <a href="{% url 'subject_detail_view' subject.slug %}">{{ subject.name }}</a>
+                                </li>
+                                <li>
+                                    Author: {{ assignment.author.username }}
+                                </li>
+                            </ul>
                         </div>
                         <script src="{{ assignment.codes }}"></script>
 {#                        {% if output_screenshots|length > 0 %}#}

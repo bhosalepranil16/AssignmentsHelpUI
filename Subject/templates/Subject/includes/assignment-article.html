@@ -1,11 +1,8 @@
 <article class="row border-bottom p-2 m-2">
-              <div class="col-12">
-                <h3 class="h5">
-                  <a class="post-title" href="{% url 'assignment_detail_view' assignment.slug %}"
-                    >{{ assignment.name }}</a
-                  >
-                </h3>
-                <p>{{ assignment.question }}</p>
-                  <a href="{% url 'assignment_detail_view' assignment.slug %}" class="btn btn-outline-primary">Lets See Code</a>
-              </div>
-            </article>
+    <div class="col-12">
+        <h3 class="h5">
+            <a class="post-title" href="{% url 'assignment_detail_view' assignment.slug %}">{{ assignment.question }}</a>
+        </h3>
+        <a href="{% url 'assignment_detail_view' assignment.slug %}" class="btn btn-outline-primary">Lets See Code</a>
+    </div>
+</article>
