@@ -37,7 +37,7 @@ class CourseSubjectModel(models.Model):
 
 class DocumentModel(models.Model):
     name = models.CharField(max_length=100)
-    file = models.FileField()
+    file_url = models.URLField(null=True)
     priority = models.IntegerField()
     subject = models.ForeignKey(SubjectModel, on_delete=models.SET_NULL, null=True)
 
