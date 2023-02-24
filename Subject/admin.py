@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import SubjectModel, CourseSubjectModel
+from .models import SubjectModel, CourseSubjectModel, DocumentModel
 
 
 # Register your models here.
@@ -15,5 +15,11 @@ class CourseSubjectAdmin(admin.ModelAdmin):
     list_filter = ('course', 'subject', 'year', 'semester')
 
 
+class DocumentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'subject', 'priority')
+    list_filter = ('subject',)
+
+
 admin.site.register(SubjectModel, SubjectAdmin)
 admin.site.register(CourseSubjectModel, CourseSubjectAdmin)
+admin.site.register(DocumentModel, DocumentAdmin)

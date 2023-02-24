@@ -14,7 +14,20 @@
                     {% include 'Subject/includes/assignment-article.html' %}
                 {% endfor %}
 			</div>
-            <aside class="col-lg-4"></aside>
+            <aside class="col-lg-4">
+                {% if documents|length > 0 %}
+                    <h5 class="widget-title mt-4"><span>Study Material</span></h5>
+                    <ul class="list-unstyled widget-list">
+                        {% for document in documents %}
+                            <li>
+                                <a href="{{ document.file.url }}" target="_blank" class="d-flex">
+                                {{ document.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </aside>
 		</div>
 	</div>
 {% endblock %}
