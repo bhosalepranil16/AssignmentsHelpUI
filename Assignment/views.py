@@ -1,3 +1,5 @@
+import requests
+
 from django.shortcuts import render, redirect, reverse
 from django.views import View
 
@@ -11,10 +13,16 @@ class AssignmentDetailView(View):
             assignment = AssignmentModel.objects.get(slug=assignment_slug)
             subject = assignment.subject
             comments = assignment.assignmentcommentmodel_set.all().order_by('-created_at')
+            if len(assignment.codes) > 0:
+                gist_id = assignment.codes[40:-3]
+                content = requests.get(f'https://api.github.com/gists/{gist_id}')
+                content = content.json()
+                files_data = list(content['files'].values())
             return render(request, 'Assignment/assignment-detail.html', {
                 'assignment': assignment,
                 'subject': subject,
-                'comments': comments
+                'comments': comments,
+                'files_data': files_data
             })
         except Exception as err:
             print(str(err))
@@ -23,6 +31,7 @@ class AssignmentDetailView(View):
                 'subject': {},
                 'comments': [],
                 'show_errors': True,
+                'files_data': [],
                 'errors': str(err)
             })
 
