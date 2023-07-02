@@ -29,7 +29,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'coral-app-doo6r.ondigitalocean.app', 'assignmentshelp.in']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'sea-turtle-app-zmc6f.ondigitalocean.app', 'assignmentshelp.in']
 
 # Application definition
 
